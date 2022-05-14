@@ -17,6 +17,7 @@ import java.io.File;
 import java.util.Collection;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
@@ -221,6 +222,14 @@ public class SudokuGUI extends JFrame {
 				update();
 			}
 		});
+		addToMenu(file, "Another Game", new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sudoku.load("easy1.txt");
+				update();
+			}
+		});
+		
 
 		addToMenu(file, "Save", new ActionListener() {
 			@Override
@@ -260,6 +269,20 @@ public class SudokuGUI extends JFrame {
 				update();
 			}
 		});
+		addToMenu(file, "Change color", new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ButtonModel model = (ButtonModel) e.getSource();
+				if (model.isRollover()) {
+					buttons[1][6].setBackground(new Color(3, 59, 90).brighter());
+		        } else if (model.isPressed()) {
+		        	buttons[1][6].setBackground(Color.BLACK);	
+		        } else {
+		        	buttons[1][6].setBackground(new Color(3, 59, 90));
+		        }
+		    }
+		});
+		
 		//
 		// Help menu
 		//
